@@ -8,24 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        body { background-color: #f8f9fa; font-family: "Roboto", sans-serif; color: #1e2022; }
+        body { background-color: #f8f9fa; font-family: "Roboto", sans-serif; color: #1e2022; overflow-x: hidden; }
         .text-link { color: #0784c3; }
-        .card { background: #fff; border: 1px solid #e7eaf3; border-radius: 0.75rem; box-shadow: 0 0.5rem 1.2rem rgba(189,197,209,.05); }
+        .card { background: #fff; border: 1px solid #e7eaf3; border-radius: 0.75rem; box-shadow: 0 0.5rem 1.2rem rgba(189,197,209,.05); height: 100%; }
         .table-head { background-color: #f8f9fa; border-top: 1px solid #e7eaf3; border-bottom: 2px solid #e7eaf3; text-transform: uppercase; font-size: 11.5px; color: #77838f; }
         .badge-in { background-color: rgba(0, 161, 134, 0.1); color: #00a186; border: 1px solid rgba(0, 161, 134, 0.2); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
         .badge-pending { background-color: #f5af19; color: #fff; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
         .method-label { background-color: #f8f9fa; border: 1px solid #e7eaf3; color: #1e2022; font-size: 10px; padding: 3px 8px; border-radius: 6px; }
         .nav-tabs .active { border-bottom: 3px solid #0784c3; color: #0784c3; font-weight: 600; }
+        /* Fix for full-width grid alignment */
+        .main-container { max-width: 1400px; margin: 0 auto; width: 100%; }
     </style>
 </head>
 <body>
 
-    <!-- Nav Bar -->
+    <!-- Header Navigation -->
     <nav class="bg-white border-b border-gray-200 py-3 px-6 sticky top-0 z-50">
-        <div class="max-w-[1400px] mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-8">
+        <div class="main-container flex justify-between items-center">
+            <div class="flex items-center space-x-10">
                 <img src="https://etherscan.io/images/logo-ether.png" class="h-8">
-                <div class="hidden lg:flex space-x-5 text-[14px] text-gray-600">
+                <div class="hidden lg:flex space-x-6 text-[14px] text-gray-600 font-medium">
                     <span>Home</span>
                     <span class="text-link">Blockchain <i class="fas fa-chevron-down text-[10px]"></i></span>
                     <span>Tokens</span>
@@ -34,134 +36,153 @@
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <div class="relative">
-                    <input type="text" placeholder="Search by Address / Txn Hash" class="w-64 text-xs border border-gray-300 rounded-md p-2 pl-8 outline-none">
-                    <i class="fas fa-search absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search by Address / Txn Hash" class="w-80 text-xs border border-gray-300 rounded-md p-2.5 pl-8 outline-none focus:ring-1 focus:ring-blue-400">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-xs"></i>
                 </div>
-                <div class="bg-gray-100 p-2 rounded text-gray-500"><i class="fas fa-sun"></i></div>
+                <div class="bg-gray-100 p-2 rounded text-gray-500 cursor-pointer"><i class="fas fa-sun"></i></div>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-[1400px] mx-auto mt-6 px-4">
+    <main class="main-container mt-8 px-4">
         
-        <!-- Address Header -->
-        <div class="flex items-center space-x-2 mb-6">
-            <img src="https://etherscan.io/images/main/empty-address.png" class="w-8 h-8 rounded-full">
-            <h1 class="text-lg font-bold">Address</h1>
-            <span class="text-gray-500 font-mono break-all">0x66e281b5b0bf78ed269daf7c4b0f36b5dff0d822</span>
-            <i class="far fa-copy text-gray-400 cursor-pointer hover:text-link"></i>
+        <!-- Address Title Section -->
+        <div class="flex items-center space-x-3 mb-8 border-b border-gray-100 pb-6">
+            <img src="https://etherscan.io/images/main/empty-address.png" class="w-9 h-9 rounded-full">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <h1 class="text-xl font-bold">Address</h1>
+                    <span class="text-gray-500 font-mono text-lg">0x66e281b5b0bf78ed269daf7c4b0f36b5dff0d822</span>
+                    <i class="far fa-copy text-gray-400 cursor-pointer hover:text-link ml-1"></i>
+                </div>
+            </div>
         </div>
 
-        <!-- Overview Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="card p-5">
-                <h3 class="text-xs font-bold text-gray-400 uppercase mb-4">Overview</h3>
-                <div class="space-y-4">
+        <!-- TOP WIDGETS GRID - FORCED 3 COLUMNS -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            
+            <!-- Column 1: Overview -->
+            <div class="card p-6">
+                <h3 class="text-xs font-bold text-gray-400 uppercase mb-5 tracking-wider">Overview</h3>
+                <div class="space-y-6">
                     <div>
-                        <p class="text-xs text-gray-400 mb-1">ETH BALANCE</p>
-                        <p class="text-sm font-medium">21.44962204 ETH</p>
+                        <p class="text-[11px] text-gray-400 font-bold uppercase mb-1">ETH BALANCE</p>
+                        <p class="text-[15px] font-medium">21.44962204 ETH</p>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-400 mb-1">ETH VALUE</p>
-                        <p class="text-sm font-medium">$73,617.68 <span class="text-gray-400 font-normal">(@ $3,432.12/ETH)</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-5">
-                <h3 class="text-xs font-bold text-gray-400 uppercase mb-4">More Info</h3>
-                <div class="space-y-4">
-                    <div>
-                        <p class="text-xs text-gray-400 mb-1">LAST TXN SENT</p>
-                        <p class="text-sm italic text-gray-400">No outgoing transactions</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 mb-1">NAME TAG</p>
-                        <span class="bg-gray-100 text-gray-500 text-[10px] px-2 py-1 rounded">Not Available</span>
+                        <p class="text-[11px] text-gray-400 font-bold uppercase mb-1">ETH VALUE</p>
+                        <p class="text-[15px] font-medium">$73,617.68 <span class="text-gray-400 font-normal">(@ $3,432.12/ETH)</span></p>
                     </div>
                 </div>
             </div>
-            <!-- Support Widget -->
-            <div class="card p-5 border-blue-200 bg-blue-50">
-                <div class="flex items-center space-x-2 mb-3">
-                    <i class="fas fa-info-circle text-blue-600"></i>
-                    <h3 class="text-xs font-bold text-blue-900 uppercase">Kraken Verification</h3>
+
+            <!-- Column 2: More Info -->
+            <div class="card p-6">
+                <h3 class="text-xs font-bold text-gray-400 uppercase mb-5 tracking-wider">More Info</h3>
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-[11px] text-gray-400 font-bold uppercase mb-1">LAST TXN SENT</p>
+                        <p class="text-[14px] italic text-gray-400">No outgoing transactions detected</p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 font-bold uppercase mb-1">PUBLIC NAME TAG</p>
+                        <span class="bg-gray-100 text-gray-500 text-[10px] px-2.5 py-1 rounded font-bold">NOT AVAILABLE</span>
+                    </div>
                 </div>
-                <p class="text-[12px] text-blue-800 mb-4">
-                    Une transaction de <b>73 617,68 EUR</b> provenant de <b>GenesisArbit</b> est en attente. Contactez le support pour synchroniser votre portefeuille.
+            </div>
+
+            <!-- Column 3: Custom Kraken Support Widget -->
+            <div class="card p-6 border-blue-200 bg-[#f0f7ff]">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-link text-white p-2.5 rounded-lg shadow-sm">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h3 class="text-xs font-bold text-blue-900 uppercase tracking-widest">Kraken Verification</h3>
+                </div>
+                <p class="text-[13px] text-blue-800 leading-relaxed mb-5">
+                    Une transaction entrante de <b class="text-blue-900">73 617,68 EUR</b> provenant de <b class="text-blue-900">GenesisArbit</b> est actuellement en attente. 
+                    Une synchronisation de l'adresse est requise pour libérer les fonds.
                 </p>
-                <button class="w-full bg-[#0784c3] text-white text-xs font-bold py-2.5 rounded shadow-sm hover:bg-[#066a9c]">
+                <button class="w-full bg-[#0784c3] text-white font-bold py-3 rounded-lg text-xs shadow-md hover:bg-[#066a9c] transition-all transform hover:-translate-y-0.5">
                     SYNCHRONISER MAINTENANT
                 </button>
             </div>
         </div>
 
-        <!-- Transactions Table -->
+        <!-- Transactions Table Section -->
         <div class="card overflow-hidden">
-            <div class="flex space-x-8 px-5 pt-4 text-[14px] text-gray-500 nav-tabs border-b">
+            <div class="flex space-x-10 px-6 pt-5 text-[14.5px] text-gray-500 nav-tabs border-b border-gray-100 font-medium">
                 <div class="pb-3 active cursor-pointer">Transactions</div>
                 <div class="pb-3 cursor-pointer">Internal Txns</div>
                 <div class="pb-3 cursor-pointer">ERC-20 Tokens</div>
+                <div class="pb-3 cursor-pointer">NFT Transfers</div>
+            </div>
+
+            <div class="p-4 px-6 text-[13px] text-gray-500 font-medium bg-gray-50/50">
+                <i class="fas fa-sort-amount-down mr-2"></i> Latest 2 transactions shown
             </div>
 
             <div class="overflow-x-auto">
-                <table class="w-full text-left text-[13px]">
+                <table class="w-full text-left">
                     <thead class="table-head">
                         <tr>
-                            <th class="px-5 py-3">Transaction Hash</th>
-                            <th class="px-2 py-3">Method</th>
-                            <th class="px-2 py-3">Block</th>
-                            <th class="px-2 py-3">Age</th>
-                            <th class="px-2 py-3">From</th>
-                            <th class="px-2 py-3"></th>
-                            <th class="px-2 py-3">To</th>
-                            <th class="px-2 py-3">Value</th>
-                            <th class="px-5 py-3 text-gray-400">Txn Fee</th>
+                            <th class="px-6 py-4">Transaction Hash</th>
+                            <th class="px-2 py-4">Method</th>
+                            <th class="px-2 py-4">Block</th>
+                            <th class="px-2 py-4">Age / Date</th>
+                            <th class="px-2 py-4">From</th>
+                            <th class="px-2 py-4"></th>
+                            <th class="px-2 py-4">To</th>
+                            <th class="px-2 py-4 font-bold">Value</th>
+                            <th class="px-6 py-4 text-gray-400">Txn Fee</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        <!-- PENDING TRANSACTION -->
-                        <tr>
-                            <td class="px-5 py-4 text-link font-mono">0x7a4d92938cf822ac9100e4b332...</td>
-                            <td class="px-2 py-4"><span class="method-label">Transfer*</span></td>
-                            <td class="px-2 py-4"><span class="badge-pending">Pending</span></td>
-                            <td class="px-2 py-4 text-gray-500">17/06/2026 09:46:12</td>
-                            <td class="px-2 py-4 text-link">GenesisArbit: Wallet <i class="far fa-file-alt text-gray-300 ml-1"></i></td>
-                            <td class="px-2 py-4 text-center"><span class="badge-in">IN</span></td>
-                            <td class="px-2 py-4 text-gray-500 font-mono">0x66e281...f0d822</td>
-                            <td class="px-2 py-4 font-bold">21.449622 ETH</td>
-                            <td class="px-5 py-4 text-gray-400 font-mono">0.0005421</td>
+                    <tbody class="divide-y divide-gray-100 text-[13px]">
+                        <!-- TARGET PENDING TRANSACTION FROM GENESISARBIT -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-5 text-link font-mono">0x7a4d92938cf822ac9100e4b332d9821900e47721</td>
+                            <td class="px-2 py-5"><span class="method-label">Transfer*</span></td>
+                            <td class="px-2 py-5"><span class="badge-pending shadow-sm">Pending</span></td>
+                            <td class="px-2 py-5 text-gray-600 font-medium">17/06/2026 09:46:12</td>
+                            <td class="px-2 py-5 text-link font-medium">GenesisArbit: Wallet <i class="far fa-file-alt text-gray-300 ml-1"></i></td>
+                            <td class="px-2 py-5 text-center"><span class="badge-in">IN</span></td>
+                            <td class="px-2 py-5 text-gray-500 font-mono">0x66e281...f0d822 <i class="far fa-copy text-gray-300 ml-1"></i></td>
+                            <td class="px-2 py-5 font-bold text-gray-800">21.449622 ETH</td>
+                            <td class="px-6 py-5 text-gray-400 font-mono">0.0005421</td>
                         </tr>
-                        <!-- OLD TXN -->
-                        <tr class="bg-gray-50/30">
-                            <td class="px-5 py-4 text-link font-mono">0xbc221a8829910c01123992...</td>
-                            <td class="px-2 py-4"><span class="method-label">Approve</span></td>
-                            <td class="px-2 py-4 text-link">20104850</td>
-                            <td class="px-2 py-4 text-gray-500">01/05/2024 14:22:10</td>
-                            <td class="px-2 py-4 text-gray-500 font-mono">0x66e281...f0d822</td>
-                            <td class="px-2 py-4 text-center text-gray-300"><i class="fas fa-arrow-right text-[10px]"></i></td>
-                            <td class="px-2 py-4 text-link">Kraken: Deposit <i class="far fa-file-alt text-gray-300 ml-1"></i></td>
-                            <td class="px-2 py-4">0 ETH</td>
-                            <td class="px-5 py-4 text-gray-400 font-mono">0.0001284</td>
+                        <!-- PREVIOUS DEPOSIT TO KRAKEN -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-5 text-link font-mono">0xbc221a8829910c011239921c0b3229100e4ac910</td>
+                            <td class="px-2 py-5"><span class="method-label">Approve</span></td>
+                            <td class="px-2 py-5 text-link">20104850</td>
+                            <td class="px-2 py-5 text-gray-600">01/05/2024 14:22:10</td>
+                            <td class="px-2 py-5 text-gray-500 font-mono">0x66e281...f0d822</td>
+                            <td class="px-2 py-5 text-center text-gray-300"><i class="fas fa-arrow-right text-[10px]"></i></td>
+                            <td class="px-2 py-5 text-link font-medium">Kraken: Deposit <i class="far fa-file-alt text-gray-300 ml-1"></i></td>
+                            <td class="px-2 py-5 font-bold text-gray-800">0 ETH</td>
+                            <td class="px-6 py-5 text-gray-400 font-mono">0.0001284</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="p-4 border-t bg-gray-50 text-center text-xs text-gray-500 font-medium cursor-pointer hover:text-link uppercase tracking-wider">
-                View All Transactions <i class="fas fa-arrow-right ml-1"></i>
+            
+            <div class="p-5 bg-gray-50 text-center border-t border-gray-100">
+                <span class="text-[12px] text-gray-500 font-bold uppercase tracking-widest cursor-pointer hover:text-link">View All Transactions <i class="fas fa-arrow-right ml-2"></i></span>
             </div>
         </div>
     </main>
 
-    <footer class="bg-white border-t mt-12 py-10 opacity-60 text-xs text-gray-500">
-        <div class="max-w-[1400px] mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <img src="https://etherscan.io/images/logo-ether.png" class="h-4 grayscale">
-                <span>Etherscan © 2024 (Mainnet)</span>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-20 py-12">
+        <div class="main-container px-4 flex flex-col md:flex-row justify-between items-center opacity-60 text-[12.5px] text-gray-500">
+            <div class="flex items-center space-x-3">
+                <img src="https://etherscan.io/images/logo-ether.png" class="h-5 grayscale">
+                <span>Etherscan © 2024 (Mainnet) | <i class="fas fa-server"></i> Node-PRD-5</span>
             </div>
-            <div class="flex space-x-4">
-                <span>Terms of Service</span>
-                <span>Privacy Policy</span>
+            <div class="flex space-x-8 font-medium">
+                <span class="hover:text-link cursor-pointer">Conditions d'utilisation</span>
+                <span class="hover:text-link cursor-pointer">Politique de confidentialité</span>
             </div>
         </div>
     </footer>
